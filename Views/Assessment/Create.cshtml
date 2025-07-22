@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Exam.Models.Assessment
+@{
+    ViewData["Title"] = "Create Assessment";
+}
+
+<h2>Create Assessment</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label>Course</label>
+        <select asp-for="CourseId" class="form-control" asp-items="ViewBag.Courses"></select>
+    </div>
+    <div class="form-group">
+        <label>Assessment Type</label>
+        <select asp-for="AssessmentTypeId" class="form-control" asp-items="ViewBag.AssessmentTypes"></select>
+    </div>
+    <div class="form-group">
+        <label>Section</label>
+        <select asp-for="SectionId" class="form-control" asp-items="ViewBag.Sections"></select>
+    </div>
+    <div class="form-group">
+        <label>Weight (%)</label>
+        <input asp-for="Weight" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Duration (Minutes)</label>
+        <input type="number" name="Duration" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Start Date</label>
+        <input type="datetime-local" asp-for="StartDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>End Date</label>
+        <input type="datetime-local" asp-for="EndDate" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Assessment</button>
+</form>
+
