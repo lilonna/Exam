@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Exam.Models.Assessment>
+@{
+    ViewData["Title"] = "Available Exams";
+}
+
+<h2>Available Exams</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Course</th>
+            <th>Type</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Duration</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var exam in Model)
+        {
+            <tr>
+                <td>@exam.Course.Code</td>
+                <td>@exam.AssessmentType.Name</td>
+                <td>@exam.StartDate.ToString("g")</td>
+                <td>@exam.EndDate.ToString("g")</td>
+                <td>@exam.DurationMinutes.Minute mins</td>
+                <td>
+                    <a href="@Url.Action("Start", "StudentExam", new { id = exam.Id })" class="btn btn-success">Start Exam</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
