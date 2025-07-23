@@ -14,7 +14,7 @@ namespace Exam.Controllers
         {
             _context = context;
         }
-      
+
         public IActionResult Index()
         {
             var instructions = _context.Instructions
@@ -25,7 +25,7 @@ namespace Exam.Controllers
             return View(instructions);
         }
 
-       
+
         [HttpGet]
         public IActionResult Add(int instructionId)
         {
@@ -51,7 +51,7 @@ namespace Exam.Controllers
             return View(model);
         }
 
-       
+
         [HttpPost]
         public IActionResult Add(Question question, List<string>? Options, string? CorrectOption)
         {

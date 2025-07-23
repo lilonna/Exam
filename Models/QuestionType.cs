@@ -19,8 +19,5 @@ public partial class QuestionType
     public bool IsDeleted { get; set; }
 
     [InverseProperty("QuestionType")]
-    public virtual ICollection<Instruction> Instructions { get; set; } = new List<Instruction>();
-
-    [InverseProperty("QuestionType")]
     public virtual ICollection<Question> Questions { get; set; } = new List<Question>();
 }

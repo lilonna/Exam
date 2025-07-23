@@ -309,9 +309,9 @@ public partial class ExamContext : DbContext
         {
             entity.Property(e => e.IsActive).HasDefaultValue(true);
 
-            entity.HasOne(d => d.QuestionType).WithMany(p => p.Instructions)
+            entity.HasOne(d => d.Assessment).WithMany(p => p.Instructions)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Instructions_QuestionTypes");
+                .HasConstraintName("FK_Instructions_Assessments");
         });
 
         modelBuilder.Entity<Instructor>(entity =>

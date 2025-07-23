@@ -21,15 +21,17 @@ public partial class Instruction
 
     public bool IsDeleted { get; set; }
 
+    public int AssessmentId { get; set; }
+
+    [ForeignKey("AssessmentId")]
+    [InverseProperty("Instructions")]
+    public virtual Assessment Assessment { get; set; } = null!;
+
     [InverseProperty("Instruction")]
     public virtual ICollection<MatchingOption> MatchingOptions { get; set; } = new List<MatchingOption>();
 
     [InverseProperty("Instruction")]
     public virtual ICollection<MatchingRelation> MatchingRelations { get; set; } = new List<MatchingRelation>();
-
-    [ForeignKey("QuestionTypeId")]
-    [InverseProperty("Instructions")]
-    public virtual QuestionType QuestionType { get; set; } = null!;
 
     [InverseProperty("Instruction")]
     public virtual ICollection<Question> Questions { get; set; } = new List<Question>();

@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Exam.Models.Instruction>
+
+<h2>Select Instruction</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Assessment</th>
+            <th>Instruction Text</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Assessment.Course.Code</td>
+                <td>@item.Description</td>
+                <td>
+                    <a asp-action="Add" asp-route-instructionId="@item.Id" class="btn btn-primary">Add Question</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

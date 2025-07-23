@@ -52,6 +52,9 @@ public partial class Assessment
     [InverseProperty("Assessment")]
     public virtual ICollection<ExamParagraph> ExamParagraphs { get; set; } = new List<ExamParagraph>();
 
+    [InverseProperty("Assessment")]
+    public virtual ICollection<Instruction> Instructions { get; set; } = new List<Instruction>();
+
     [ForeignKey("SectionId")]
     [InverseProperty("Assessments")]
     public virtual Section Section { get; set; } = null!;

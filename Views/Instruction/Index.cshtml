@@ -1,0 +1,25 @@
+﻿
+@model Exam.Models.Assessment
+
+<h2>Instructions for @Model.Course.Code</h2>
+
+<a asp-action="Create" asp-route-assessmentId="@Model.Id" class="btn btn-success">Add Instruction</a>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Title</th>
+            @* <th>Created At</th> *@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ins in Model.Instructions)
+        {
+            <tr>
+                <td>@ins.Id</td>
+               @*  <td>@ins.CreatedAt.ToShortDateString()</td> *@
+            </tr>
+        }
+    </tbody>
+</table>
+

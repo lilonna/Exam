@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Exam.Models.Question
+@{
+    ViewData["Title"] = "Add Question";
+    var types = (List<Exam.Models.QuestionType>)ViewBag.QuestionTypes;
+}
+
+<h2>Add Question</h2>
+
+<form asp-action="Add" method="post">
+    <input type="hidden" asp-for="InstructionId" />
+
+    <div class="form-group">
+        <label>Question Type</label>
+        <select asp-for="QuestionTypeId" class="form-control">
+            @foreach (var type in types)
+            {
+                <option value="@type.Id">@type.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Question Number</label>
+        <input asp-for="QuestionNumber" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Question</label>
+        <textarea asp-for="Question1" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Weight</label>
+        <input asp-for="Weight" class="form-control" />
+    </div>
+
+    <div id="mcq-options">
+        <label>Options (MCQ)</label>
+        <div class="input-group mb-2">
+            <input name="Options" class="form-control" placeholder="Option 1" />
+        </div>
+        <div class="input-group mb-2">
+            <input name="Options" class="form-control" placeholder="Option 2" />
+        </div>
+        <div class="input-group mb-2">
+            <input name="Options" class="form-control" placeholder="Option 3" />
+        </div>
+        <div class="input-group mb-2">
+            <input name="Options" class="form-control" placeholder="Option 4" />
+        </div>
+
+        <label>Correct Option</label>
+        <input name="CorrectOption" class="form-control" placeholder="Copy exact correct option text here" />
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Save</button>
+</form>
+
