@@ -128,9 +128,7 @@ public partial class ExamContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Assessments_Users");
 
-            entity.HasOne(d => d.Section).WithMany(p => p.Assessments)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Assessments_Sections");
+            entity.HasOne(d => d.Section).WithMany(p => p.Assessments).HasConstraintName("FK_Assessments_Sections");
         });
 
         modelBuilder.Entity<AssessmentType>(entity =>

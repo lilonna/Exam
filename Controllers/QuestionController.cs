@@ -83,9 +83,25 @@ namespace Exam.Controllers
                 _context.SaveChanges();
             }
 
-         
 
-            return RedirectToAction("Index");
+
+            return RedirectToAction("ViewQuestions", new { instructionId = question.InstructionId });
+
+        }
+        public IActionResult ViewQuestions(int instructionId)
+        {
+            var questions = _context.Questions
+                .Where(q => q.InstructionId == instructionId)
+                .Include(q => q.QuestionType)
+                .Include(q => q.Options)
+                .ToList();
+
+            ViewBag.Instruction = _context.Instructions
+                .Include(i => i.Assessment)
+                .ThenInclude(a => a.Course)
+                .FirstOrDefault(i => i.Id == instructionId);
+
+            return View(questions);
         }
 
         private int GetCurrentUserId()

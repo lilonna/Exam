@@ -19,7 +19,7 @@ namespace Exam.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Courses = new SelectList(_context.Courses, "Id", "Name");
+            ViewBag.Courses = new SelectList(_context.Courses, "Id", "Code");
             ViewBag.AssessmentTypes = new SelectList(_context.AssessmentTypes, "Id", "Name");
             ViewBag.Sections = new SelectList(_context.Sections, "Id", "Title");
 
@@ -34,15 +34,25 @@ namespace Exam.Controllers
             }
 
             model.DurationMinutes = DateTime.Today.AddMinutes(Duration);
-            //model.CreatedAt = DateTime.Now;
-           /* model.CreatedBy = GetCurrentUserId();*/ // Implement this method based on logged-in user
             model.IsActive = true;
             model.IsDeleted = false;
 
             _context.Assessments.Add(model);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index"); // or redirect to add questions
+            // Automatically create one instruction
+            var instruction = new Instruction
+            {
+                AssessmentId = model.Id,
+                Description = "Default instruction", // You can make this editable later
+                IsActive = true,
+                IsDeleted = false
+            };
+            _context.Instructions.Add(instruction);
+            await _context.SaveChangesAsync();
+
+            // Redirect to add question for that instruction
+            return RedirectToAction("Add", "Question", new { instructionId = instruction.Id });
         }
 
 

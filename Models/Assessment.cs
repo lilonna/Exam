@@ -15,7 +15,7 @@ public partial class Assessment
 
     public int AssessmentTypeId { get; set; }
 
-    public int SectionId { get; set; }
+    public int? SectionId { get; set; }
 
     public double Weight { get; set; }
 
@@ -57,7 +57,7 @@ public partial class Assessment
 
     [ForeignKey("SectionId")]
     [InverseProperty("Assessments")]
-    public virtual Section Section { get; set; } = null!;
+    public virtual Section? Section { get; set; }
 
     [InverseProperty("Assessment")]
     public virtual ICollection<StudentMark> StudentMarks { get; set; } = new List<StudentMark>();
